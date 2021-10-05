@@ -75,7 +75,7 @@ Hướng dẫn chuẩn bị hồ sơ:    <a href="https://bit.ly/2RvwXpo">https:
 """
 message = MIMEMultipart()
 message.attach(MIMEText(html, "html"))
-message.add_header("Content-Disposition","ĐTN - HSV.  HỖ TRỢ LÀM HỒ SƠ SINH VIÊN 5 TỐT TRƯỜNG ĐHCN")
+message["Subject"]="ĐTN - HSV.  HỖ TRỢ LÀM HỒ SƠ SINH VIÊN 5 TỐT TRƯỜNG ĐHCN"
 sender_email = "huyenbui117@gmail.com"
 password = input("Type your password and press enter: ")
 
