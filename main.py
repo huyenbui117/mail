@@ -76,18 +76,25 @@ Hướng dẫn chuẩn bị hồ sơ:    <a href="https://bit.ly/2RvwXpo">https:
 message = MIMEMultipart()
 message.attach(MIMEText(html, "html"))
 message["Subject"]="ĐTN - HSV.  HỖ TRỢ LÀM HỒ SƠ SINH VIÊN 5 TỐT TRƯỜNG ĐHCN"
-sender_email = "huyenbui117@gmail.com"
+sender_email = "19021307@vnu.edu.vn"
 password = input("Type your password and press enter: ")
 
 context = ssl.create_default_context()
 with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-    server.login(sender_email, password)
-    with open("contacts_file.csv") as file:
-        reader = csv.reader(file)
-        next(reader)  # Skip header row
-        for receiver_email in reader:
-            server.sendmail(
-                sender_email,
-                receiver_email,
-                message.as_string()
-            )
+    try:
+        server.login(sender_email, password)
+        with open("contacts_file.csv") as file:
+            reader = csv.reader(file)
+            next(reader)  # Skip header row
+            for receiver_email in reader:
+                try:
+                    server.sendmail(
+                        sender_email,
+                        receiver_email,
+                        message.as_string()
+                    )
+                    print(str(receiver_email)+"sent")
+                except Exception as ex:
+                    print(ex)
+    except Exception as e:
+        print(e)
